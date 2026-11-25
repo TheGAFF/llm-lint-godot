@@ -1,0 +1,26 @@
+{
+  "rule": "architecture/bundle-size",
+  "passing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version = 1\n[bundles]\nowners = ['src/shared']\nmax_files = 1\n",
+      "src/shared/subject/sample_node.gd": "extends Node\n"
+    }
+  },
+  "failing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version = 1\n[bundles]\nowners = ['src/shared']\nmax_files = 1\n",
+      "src/shared/subject/sample_node.gd": "extends Node\n",
+      "src/shared/subject/other_node.gd": "extends Node\n"
+    }
+  },
+  "expected": {
+    "path": "src/shared/subject",
+    "line": 1
+  }
+}

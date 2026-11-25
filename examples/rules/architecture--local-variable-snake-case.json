@@ -1,0 +1,25 @@
+{
+  "rule": "architecture/local-variable-snake-case",
+  "passing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/gameplay/nodes/spawner_node.gd": "class_name SpawnerNode\nextends Node\n\nfunc _ready() -> void:\n\tvar spawn_cooldown: float = 2.5\n\tprint(spawn_cooldown)\n"
+    }
+  },
+  "failing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/gameplay/nodes/spawner_node.gd": "class_name SpawnerNode\nextends Node\n\nfunc _ready() -> void:\n\tvar _spawn_cooldown: float = 2.5\n\tprint(_spawn_cooldown)\n"
+    }
+  },
+  "expected": {
+    "path": "src/features/gameplay/nodes/spawner_node.gd",
+    "line": 5
+  }
+}

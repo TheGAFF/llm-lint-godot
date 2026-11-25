@@ -1,0 +1,32 @@
+{
+  "rule": "architecture/asset-collision",
+  "expected": {
+    "path": "src/features/ui/assets/music/music_addition.ogg",
+    "line": 1
+  },
+  "passing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/ui/assets/music/addition_music.ogg": ""
+    },
+    "directories": [
+      "src"
+    ]
+  },
+  "failing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/ui/assets/music/music_addition.ogg": "",
+      "src/features/ui/assets/music/addition_music.ogg": ""
+    },
+    "directories": [
+      "src"
+    ]
+  }
+}

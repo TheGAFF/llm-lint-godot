@@ -1,0 +1,62 @@
+[
+  [
+    {
+      "item": "_ready",
+      "text": "extends Node\n\nfunc _ready() -> void:\n\tvar view = %Panel.get_node(\"Search\")\n\tview.changed.connect(_filter)\n\t%Toolbar.selected.connect(_refresh)\n\tview.text = Service.current_search()\n\tview.show_results(Service.list_matches())\n\t_filter()\n\t%SearchLog.remember_query(QueryModel.normalized_text(view.text))\n\t%Status.show_hint(SearchHints.describe_selection(view.active_filter))\n\t%History.store_result(QueryModel.serialize(view.results, view.offset))\n"
+    },
+    {
+      "item": "_ready",
+      "text": "extends Node\n\nfunc _ready() -> void:\n\tvar view = %Panel.get_node(\"Preview\")\n\tview.resized.connect(_resize)\n\t%Toolbar.toggled.connect(_switch_mode)\n\tview.zoom = Service.default_zoom()\n\tview.draw_texture(Service.get_texture())\n\t_resize()\n\t%PreviewLog.remember_frame(ImageModel.preview_style(view.zoom))\n\t%Monitor.show_metric(RenderStats.describe_surface(view.active_layer))\n\t%Frames.store_frame(ImageModel.encode(view.texture, view.zoom))\n"
+    }
+  ],
+  [
+    {
+      "item": "refresh_rows",
+      "text": "extends Node\n\nfunc refresh_rows() -> void:\n\tvar rows = Directory.list_entries()\n\tfor row in rows:\n\t\tvar key = row.get_file_name()\n\t\tvar visible = Filter.allows(key)\n\t\tGrid.apply_visibility(key, visible)\n\tStatus.show_count(rows.size())\n\tGrid.request_layout()\n\tGrid.refresh_selection(Directory.lookup(Catalog.KEY_ACTIVE))\n\tStatus.update_banner(Filter.describe_rule(Grid.current_mode))\n\tStatus.report_location(Directory.render_label(Grid.current_path))\n"
+    },
+    {
+      "item": "run_sample",
+      "text": "extends Node\n\nfunc run_sample() -> void:\n\tvar samples = Recorder.load_samples()\n\tfor sample in samples:\n\t\tvar channel = sample.get_channel()\n\t\tvar average = Meter.measure(channel)\n\t\tReport.record_reading(channel, average)\n\tClock.mark_frame(samples.size())\n\tRecorder.finish_capture()\n\tReport.update_average(Recorder.lookup(Channel.PRIMARY))\n\tClock.mark_average(Meter.describe_readings(Report.current_average))\n\tClock.update_deadline(Recorder.render_label(Report.until_timestamp))\n"
+    }
+  ],
+  [
+    {
+      "item": "sum_active",
+      "text": "extends RefCounted\n\nfunc sum_active() -> int:\n\tvar total: int = 0\n\tfor item in Registry.enabled_items():\n\t\tvar count = Registry.count(item)\n\t\ttotal += count\n\t\tJournal.note_total(item, count)\n\tRegistry.recount(Group.PRIMARY)\n\tJournal.note_run(Registry.read_total(Group.BACKUP))\n\tJournal.flush_buffer(Registry.snapshot(Group.MANUAL))\n\treturn total\n"
+    },
+    {
+      "item": "apply_discounts",
+      "text": "extends RefCounted\n\nfunc apply_discounts() -> int:\n\tvar balance: int = 100\n\tfor tier in Pricing.discount_tiers():\n\t\tvar factor = Pricing.multiplier(tier)\n\t\tbalance *= factor\n\t\tLedger.record_discount(tier, factor)\n\tPricing.refresh(Tier.STANDARD)\n\tLedger.note_sale(Pricing.read_discount(Tier.DISCOUNT))\n\tLedger.clear_pending(Pricing.snapshot(Tier.WHOLESALE))\n\treturn balance\n"
+    }
+  ],
+  [
+    {
+      "item": "window_outline",
+      "text": "extends RefCounted\n\nfunc window_outline() -> Array:\n\treturn [\n\t\tRectStamp(Vector2(16, 2), Vector2(12, 8), Color(0.25, 0.5, 0.75)),\n\t\tRectStamp(Vector2(9, 16), Vector2(14, 3), Color(0.25, 0.5, 0.75)),\n\t\tRectStamp(Vector2(4, 11), Vector2(16, 24), Color(0.25, 0.5, 0.75)),\n\t\tRectStamp(Vector2(6, 5), Vector2(18, 16), Color(0.25, 0.5, 0.75)),\n\t]\n"
+    },
+    {
+      "item": "desk_top",
+      "text": "extends RefCounted\n\nfunc desk_top() -> Array:\n\treturn [\n\t\tRectStamp(Vector2(22, 2), Vector2(12, 8), Color(0.7, 0.4, 0.2)),\n\t\tRectStamp(Vector2(9, 22), Vector2(14, 3), Color(0.7, 0.4, 0.2)),\n\t\tRectStamp(Vector2(4, 11), Vector2(22, 24), Color(0.7, 0.4, 0.2)),\n\t\tRectStamp(Vector2(6, 5), Vector2(18, 22), Color(0.7, 0.4, 0.2)),\n\t]\n"
+    }
+  ],
+  [
+    {
+      "item": "window_outline",
+      "text": "extends RefCounted\n\nfunc window_outline() -> Array:\n\treturn [\n\t\tRectStamp(Vector2(16, 2), Vector2(12, 8), Color(0.25, 0.5, 0.75)),\n\t\tRectStamp(Vector2(9, 16), Vector2(14, 3), Color(0.25, 0.5, 0.75)),\n\t\tRectStamp(Vector2(4, 11), Vector2(16, 24), Color(0.25, 0.5, 0.75)),\n\t\tRectStamp(Vector2(6, 5), Vector2(18, 16), Color(0.25, 0.5, 0.75)),\n\t]\n"
+    },
+    {
+      "item": "tool_rack",
+      "text": "extends RefCounted\n\nfunc tool_rack() -> Array:\n\treturn [\n\t\tLineStamp(Vector2(32, 2), Vector2(12, 8), Color(0.1, 0.8, 0.4)),\n\t\tLineStamp(Vector2(9, 32), Vector2(14, 3), Color(0.1, 0.8, 0.4)),\n\t\tLineStamp(Vector2(4, 11), Vector2(32, 24), Color(0.1, 0.8, 0.4)),\n\t\tLineStamp(Vector2(6, 5), Vector2(18, 32), Color(0.1, 0.8, 0.4)),\n\t]\n"
+    }
+  ],
+  [
+    {
+      "item": "desk_top",
+      "text": "extends RefCounted\n\nfunc desk_top() -> Array:\n\treturn [\n\t\tRectStamp(Vector2(22, 2), Vector2(12, 8), Color(0.7, 0.4, 0.2)),\n\t\tRectStamp(Vector2(9, 22), Vector2(14, 3), Color(0.7, 0.4, 0.2)),\n\t\tRectStamp(Vector2(4, 11), Vector2(22, 24), Color(0.7, 0.4, 0.2)),\n\t\tRectStamp(Vector2(6, 5), Vector2(18, 22), Color(0.7, 0.4, 0.2)),\n\t]\n"
+    },
+    {
+      "item": "tool_rack",
+      "text": "extends RefCounted\n\nfunc tool_rack() -> Array:\n\treturn [\n\t\tLineStamp(Vector2(32, 2), Vector2(12, 8), Color(0.1, 0.8, 0.4)),\n\t\tLineStamp(Vector2(9, 32), Vector2(14, 3), Color(0.1, 0.8, 0.4)),\n\t\tLineStamp(Vector2(4, 11), Vector2(32, 24), Color(0.1, 0.8, 0.4)),\n\t\tLineStamp(Vector2(6, 5), Vector2(18, 32), Color(0.1, 0.8, 0.4)),\n\t]\n"
+    }
+  ]
+]

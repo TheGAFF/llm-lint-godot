@@ -1,0 +1,25 @@
+{
+  "rule": "architecture/member-underscore-required",
+  "passing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/gameplay/nodes/spawner_node.gd": "class_name SpawnerNode\nextends Node\n\nvar _spawn_cooldown: float = 2.5\n\nfunc _recalculate_path() -> void:\n\t_spawn_cooldown = 1.0\n\nfunc _ready() -> void:\n\t_recalculate_path()\n"
+    }
+  },
+  "failing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/gameplay/nodes/spawner_node.gd": "class_name SpawnerNode\nextends Node\n\nvar spawn_cooldown: float = 2.5\n\nfunc recalculate_path() -> void:\n\tspawn_cooldown = 1.0\n\nfunc _ready() -> void:\n\trecalculate_path()\n"
+    }
+  },
+  "expected": {
+    "path": "src/features/gameplay/nodes/spawner_node.gd",
+    "line": 4
+  }
+}

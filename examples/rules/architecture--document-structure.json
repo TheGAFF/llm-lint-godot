@@ -1,0 +1,31 @@
+{
+  "rule": "architecture/document-structure",
+  "expected": {
+    "path": "src/features/run/docs/guides/checkpoint_guide.md",
+    "line": 23
+  },
+  "passing": {
+    "operation": "architecture",
+    "args": [],
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/run/docs/guides/checkpoint_guide.md": "+++\nreviewed = \"2026-01-01\"\nsources_hash = \"sha256:9b02d4924bd0ee0415d68dfe6348440aa508fdbdebdc270960c10a3b15196237\"\n+++\n# Checkpoint\n\n## Summary\n\nCheckpoint behavior and its review evidence.\n\n## Key Files\n\n| Path | Purpose |\n| --- | --- |\n| `project.godot` | Project settings. |\n\n## Prerequisites\n\n- A configured project.\n\n## Steps\n\n1. Resume the run.\n\n## Validation\n\n- Confirm the saved run resumes.\n\n## Related Documents\n\n- [Project](README.md).\n"
+    },
+    "directories": [
+      "src"
+    ]
+  },
+  "failing": {
+    "operation": "architecture",
+    "args": [],
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/run/docs/guides/checkpoint_guide.md": "+++\nreviewed = \"2026-01-01\"\nsources_hash = \"sha256:9b02d4924bd0ee0415d68dfe6348440aa508fdbdebdc270960c10a3b15196237\"\n+++\n# Checkpoint\n\n## Summary\n\nCheckpoint behavior and its review evidence.\n\n## Key Files\n\n| Path | Purpose |\n| --- | --- |\n| `project.godot` | Project settings. |\n\n## Prerequisites\n\n- A configured project.\n\n## Steps\n\n- Resume the run.\n\n## Validation\n\n- Confirm the saved run resumes.\n\n## Related Documents\n\n- [Project](README.md).\n"
+    },
+    "directories": [
+      "src"
+    ]
+  }
+}

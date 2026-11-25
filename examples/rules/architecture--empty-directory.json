@@ -1,0 +1,27 @@
+{
+  "rule": "architecture/empty-directory",
+  "passing": {
+    "args": [],
+    "files": {
+      "llm-lint.godot.toml": "version = 1\n[[exceptions]]\npath = \"src/shared/fixtures\"\nrule = \"architecture/empty-directory\"\nitem = \"<directory>\"\nreason = \"The fixture writer expects the directory to exist before running.\"\n",
+      "project.godot": "config_version=5\n",
+      "src/shared/fixtures/.gitkeep": ""
+    },
+    "operation": "architecture"
+  },
+  "failing": {
+    "args": [],
+    "files": {
+      "llm-lint.godot.toml": "version = 1\n",
+      "project.godot": "config_version=5\n",
+      "src/shared/fixtures/.gitkeep": ""
+    },
+    "operation": "architecture"
+  },
+  "expected": {
+    "path": "src/shared/fixtures",
+    "line": 1,
+    "item": "<directory>",
+    "severity": "error"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "rule": "architecture/syntax",
+  "passing": {
+    "testName": "architecture/syntax isolated example",
+    "operation": "architecture",
+    "args": [],
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\nsource_roots=[\"src\"]\n",
+      "src/shared/queries/value_query.gd": "extends RefCounted\nstatic func get_value() -> int:\n\treturn 1\n"
+    }
+  },
+  "failing": {
+    "testName": "architecture/syntax isolated example",
+    "operation": "architecture",
+    "args": [],
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\nsource_roots=[\"src\"]\n",
+      "src/shared/queries/value_query.gd": "extends RefCounted\nstatic func get_value( -> int:\n\treturn 1\n"
+    }
+  },
+  "expected": {
+    "rule": "architecture/syntax"
+  }
+}

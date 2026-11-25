@@ -1,0 +1,38 @@
+{
+  "rule": "gdstyle/quality/type-hint",
+  "passing": {
+    "testName": "gdstyle/quality/type-hint isolated example",
+    "operation": "gdstyle",
+    "args": [
+      "check",
+      "--format",
+      "json",
+      "--config",
+      "gdstyle.toml",
+      "src/shared/queries/value_query.gd"
+    ],
+    "files": {
+      "gdstyle.toml": "[rules]\n\"quality/type-hint\"=\"error\"\n",
+      "src/shared/queries/value_query.gd": "extends RefCounted\nstatic func get_value() -> int:\n\treturn 1\n"
+    }
+  },
+  "failing": {
+    "testName": "gdstyle/quality/type-hint isolated example",
+    "operation": "gdstyle",
+    "args": [
+      "check",
+      "--format",
+      "json",
+      "--config",
+      "gdstyle.toml",
+      "src/shared/queries/value_query.gd"
+    ],
+    "files": {
+      "gdstyle.toml": "[rules]\n\"quality/type-hint\"=\"error\"\n",
+      "src/shared/queries/value_query.gd": "extends RefCounted\nstatic func get_value():\n\treturn 1\n"
+    }
+  },
+  "expected": {
+    "rule": "gdstyle/quality/type-hint"
+  }
+}

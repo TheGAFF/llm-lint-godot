@@ -1,0 +1,27 @@
+{
+  "rule": "architecture/mapper-return-type",
+  "passing": {
+    "operation": "architecture",
+    "args": [],
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/shared/mappers.gd": "class UserDto:\n\textends RefCounted\nstatic func map_user_dto() -> UserDto:\n\treturn UserDto.new()\n"
+    },
+    "settings": {}
+  },
+  "failing": {
+    "operation": "architecture",
+    "args": [],
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/shared/mappers.gd": "class UserDto:\n\textends RefCounted\nstatic func map_wrong() -> UserDto:\n\treturn UserDto.new()\n"
+    },
+    "settings": {}
+  },
+  "expected": {
+    "path": "src/shared/mappers.gd",
+    "line": 3
+  }
+}

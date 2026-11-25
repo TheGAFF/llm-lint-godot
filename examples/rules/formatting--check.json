@@ -1,0 +1,30 @@
+{
+  "rule": "formatting/check",
+  "passing": {
+    "testName": "formatting/check isolated example",
+    "operation": "gdstyle-formatting",
+    "args": [
+      "fmt",
+      "--check",
+      "src/shared/queries/value_query.gd"
+    ],
+    "files": {
+      "src/shared/queries/value_query.gd": "extends RefCounted\n\n\nstatic func get_value() -> int:\n\treturn 1\n"
+    }
+  },
+  "failing": {
+    "testName": "formatting/check isolated example",
+    "operation": "gdstyle-formatting",
+    "args": [
+      "fmt",
+      "--check",
+      "src/shared/queries/value_query.gd"
+    ],
+    "files": {
+      "src/shared/queries/value_query.gd": "extends RefCounted\nstatic func get_value()->int:\n    return 1\n"
+    }
+  },
+  "expected": {
+    "rule": "formatting/check"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "rule": "architecture/private-member-access",
+  "passing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/gameplay/nodes/spawner_node.gd": "class_name SpawnerNode\nextends Node\n\nfunc recalculate_path() -> void:\n\tpass\n",
+      "src/features/ui/nodes/preview_node.gd": "class_name PreviewNode\nextends Node\n\nfunc refresh(spawner: SpawnerNode) -> void:\n\tspawner.recalculate_path()\n"
+    }
+  },
+  "failing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/gameplay/nodes/spawner_node.gd": "class_name SpawnerNode\nextends Node\n\nfunc _recalculate_path() -> void:\n\tpass\n",
+      "src/features/ui/nodes/preview_node.gd": "class_name PreviewNode\nextends Node\n\nfunc refresh(spawner: SpawnerNode) -> void:\n\tspawner._recalculate_path()\n"
+    }
+  },
+  "expected": {
+    "path": "src/features/ui/nodes/preview_node.gd",
+    "line": 5
+  }
+}

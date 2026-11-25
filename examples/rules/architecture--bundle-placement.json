@@ -1,0 +1,25 @@
+{
+  "rule": "architecture/bundle-placement",
+  "passing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version = 1\n[bundles]\nowners = ['src/shared']\n",
+      "src/shared/subject/sample_node.gd": "extends Node\n"
+    }
+  },
+  "failing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version = 1\n[bundles]\nowners = ['src/shared']\n",
+      "src/shared/nodes/sample_node.gd": "extends Node\n"
+    }
+  },
+  "expected": {
+    "path": "src/shared/nodes/sample_node.gd",
+    "line": 1
+  }
+}

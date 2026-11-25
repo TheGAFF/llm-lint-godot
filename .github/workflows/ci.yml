@@ -1,0 +1,133 @@
+name: Check and build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+  schedule:
+    - cron: "29 5 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  check-and-build:
+    if: github.event_name != 'schedule'
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-2025
+            target: x86_64-pc-windows-msvc
+          - runner: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+          - runner: macos-15-intel
+            target: x86_64-apple-darwin
+          - runner: macos-15
+            target: aarch64-apple-darwin
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Rust
+        run: rustup toolchain install 1.99.0 --profile minimal --component clippy --component rustfmt
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Run Clippy
+        run: cargo clippy --locked --all-targets -- -D warnings
+      - name: Verify the standalone source package
+        if: matrix.target == 'x86_64-unknown-linux-gnu'
+        run: cargo package --locked
+      - name: Build, test, and verify the archive
+        shell: pwsh
+        env:
+          RELEASE_TARGET: ${{ matrix.target }}
+        run: ./tools/build-release.ps1 -Target $env:RELEASE_TARGET
+      - name: Upload verified archive and checksum
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: godot-llm-lint-${{ matrix.target }}
+          path: .verification/release/${{ matrix.target }}/dist/
+          if-no-files-found: error
+          include-hidden-files: true
+          compression-level: 0
+
+  release-security:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install Rust
+        run: rustup toolchain install 1.99.0 --profile minimal
+      - name: Verify release tag
+        if: github.ref_type == 'tag'
+        env:
+          REF_PROTECTED: ${{ github.ref_protected }}
+        run: |
+          set -euo pipefail
+          test "$REF_PROTECTED" = true
+          git merge-base --is-ancestor HEAD origin/main
+          version=$(cargo metadata --locked --no-deps --format-version 1 | jq -r '.packages[] | select(.name == "godot-llm-lint") | .version')
+          test "$GITHUB_REF_NAME" = "v$version"
+          test -f "docs/releases/$GITHUB_REF_NAME.md"
+      - name: Verify public source and Cargo inventory
+        run: python3 tools/verify-public-release.py --history
+      - name: Scan public history for credentials
+        env:
+          GOBIN: ${{ runner.temp }}/release-bin
+        run: |
+          go install github.com/zricethezav/gitleaks/v8@v8.30.0
+          "$GOBIN/gitleaks" git --log-opts="--all" --redact=100 --no-banner
+      - name: Audit project and pinned gdstyle dependencies
+        run: |
+          cargo install --locked --version 0.22.2 --root "$RUNNER_TEMP/rustsec" cargo-audit
+          curl -q --proto '=https' --proto-redir '=https' --fail --silent --show-error --location \
+            'https://raw.githubusercontent.com/atelico/gdstyle/371f880fa688c66d08f4622325d48da1d16521dd/Cargo.lock' \
+            --output "$RUNNER_TEMP/gdstyle-Cargo.lock"
+          echo "8751f77656aef4887919514a90cfacbcc64cca96cbbaddd3515cb3053b609556  $RUNNER_TEMP/gdstyle-Cargo.lock" | sha256sum --check
+          "$RUNNER_TEMP/rustsec/bin/cargo-audit" audit --file Cargo.lock
+          # Only this upstream lockfile gets the reviewed formatting-only exception.
+          "$RUNNER_TEMP/rustsec/bin/cargo-audit" audit --file "$RUNNER_TEMP/gdstyle-Cargo.lock" --ignore RUSTSEC-2026-0204
+
+  draft-release:
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    needs: [check-and-build, release-security]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          pattern: godot-llm-lint-*
+          path: release-assets
+          merge-multiple: true
+      - name: Verify downloaded archives and checksums
+        run: python3 tools/verify-public-release.py --assets release-assets "$GITHUB_REF_NAME"
+      - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
+        with:
+          subject-path: |
+            release-assets/*.zip
+            release-assets/*.tar.gz
+      - name: Create the draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" release-assets/* \
+            --verify-tag --draft --title "Godot llm-lint $GITHUB_REF_NAME" \
+            --notes-file "docs/releases/$GITHUB_REF_NAME.md"

@@ -1,0 +1,53 @@
+[
+	["mapper", "mappers", "map to from convert", true],
+	["query", "queries", "query get read fetch load list", true],
+	["selector", "selectors", "select find pick filter retain", false],
+	["builder", "builders", "build", true],
+	["factory", "factories", "create make", false],
+	["parser", "parsers", "parse deserialize decode", true],
+	["serializer", "serializers", "serialize stringify encode", false],
+	["formatter", "formatters", "format", false],
+	[
+		"normalizer",
+		"normalizers",
+		"normalize canonicalize sanitize slugify strip",
+		false
+	],
+	["predicate", "predicates", "is has can should", false],
+	["validator", "validators", "validate assert ensure verify", false],
+	["comparator", "comparators", "compare", false],
+	["sorter", "sorters", "sort order rank", false],
+	["calculator", "calculators", "calculate compute count estimate", false],
+	[
+		"aggregator",
+		"aggregators",
+		"aggregate summarize collect group index",
+		false
+	],
+	["resolver", "resolvers", "resolve", true],
+	["evaluator", "evaluators", "evaluate score", true],
+	["classifier", "classifiers", "classify detect", true],
+	["matcher", "matchers", "match", true],
+	["deriver", "derivers", "derive materialize", false],
+	[
+		"mutator",
+		"mutators",
+		"apply update set patch toggle assign rewrite",
+		false
+	],
+	["merger", "mergers", "merge reconcile combine", false],
+	[
+		"command",
+		"commands",
+		"save persist insert upsert delete remove write put replace sync",
+		false
+	],
+	["guard", "guards", "authorize authenticate require", false],
+	["processor", "processors", "process", false],
+	["cache", "caches", "cache invalidate evict peek", false],
+	["signer", "signers", "sign", false],
+	["compiler", "compilers", "compile", false],
+	["handler", "handlers", "handle", false],
+	["wrapper", "wrappers", "with wrap", false],
+	["queue", "queues", "enqueue dequeue queue", true]
+]

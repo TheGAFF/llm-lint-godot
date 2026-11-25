@@ -1,0 +1,27 @@
+{
+  "rule": "architecture/resource-id-name",
+  "passing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n[rules]\n'architecture/resource-id-name'='error'\n'architecture/resource-id-type'='error'\n'architecture/stringname-literal'='error'\n",
+      "src/features/content/resources/base_resource.gd": "class_name BaseResource\nextends Resource\n@export var id: StringName = &\"base\"\n",
+      "src/features/content/resources/base_resource.tres": "[gd_resource type=\"Resource\" format=3]\n[ext_resource type=\"Script\" path=\"res://src/features/content/resources/base_resource.gd\" id=\"s\"]\n[resource]\nscript = ExtResource(\"s\")\nid = &\"base\"\n"
+    }
+  },
+  "failing": {
+    "args": [],
+    "operation": "architecture",
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n[rules]\n'architecture/resource-id-name'='error'\n'architecture/resource-id-type'='error'\n'architecture/stringname-literal'='error'\n",
+      "src/features/content/resources/base_resource.gd": "class_name BaseResource\nextends Resource\n@export var id: StringName = &\"base\"\n",
+      "src/features/content/resources/base_resource.tres": "[gd_resource type=\"Resource\" format=3]\n[ext_resource type=\"Script\" path=\"res://src/features/content/resources/base_resource.gd\" id=\"s\"]\n[resource]\nscript = ExtResource(\"s\")\nid = &\"wrong\"\n"
+    }
+  },
+  "expected": {
+    "path": "src/features/content/resources/base_resource.tres",
+    "line": 5
+  }
+}

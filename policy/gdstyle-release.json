@@ -1,0 +1,34 @@
+[
+  {
+    "target": "x86_64-pc-windows-msvc",
+    "url": "https://github.com/atelico/gdstyle/releases/download/v0.3.1/gdstyle-x86_64-pc-windows-msvc.zip",
+    "archive_sha256": "72a32d8fca84614ab28735c07d2c785c5700eb29585c35ed05af1802dee13212",
+    "executable_sha256": "282ed4d31e35f55fa463fbfc9d3c478cd70d5a2656a83690c049c3156bf6c2f0",
+    "archive_name": "gdstyle-x86_64-pc-windows-msvc.zip",
+    "executable": "gdstyle.exe"
+  },
+  {
+    "target": "x86_64-unknown-linux-gnu",
+    "url": "https://github.com/atelico/gdstyle/releases/download/v0.3.1/gdstyle-x86_64-unknown-linux-gnu.tar.gz",
+    "archive_sha256": "1a444bf1a6fd9173e4f9f5cfd197e527dab61fca2bf8e5037b974143f15affe5",
+    "executable_sha256": "fe68fbde7f2dae13ce20d93d8b0883e9187ce5be5d50e6a39f3fe210251377eb",
+    "archive_name": "gdstyle-x86_64-unknown-linux-gnu.tar.gz",
+    "executable": "gdstyle"
+  },
+  {
+    "target": "x86_64-apple-darwin",
+    "url": "https://github.com/atelico/gdstyle/releases/download/v0.3.1/gdstyle-x86_64-apple-darwin.tar.gz",
+    "archive_sha256": "04f1b72141189dbf74ee6ad4d1a53e0fe44f80bb9fe27a0a751817e5ca2a3f0c",
+    "executable_sha256": "9ac7c4ea9bbe3bcb9744b492301919712dd3c3e17a7aedd122ce3c80e478ba12",
+    "archive_name": "gdstyle-x86_64-apple-darwin.tar.gz",
+    "executable": "gdstyle"
+  },
+  {
+    "target": "aarch64-apple-darwin",
+    "url": "https://github.com/atelico/gdstyle/releases/download/v0.3.1/gdstyle-aarch64-apple-darwin.tar.gz",
+    "archive_sha256": "cd6336acd310f5818d4a1be0732bdffe23f53d1b8928b2995251d60274c6acf8",
+    "executable_sha256": "440d48873e1f18de9dfd2ba0ed13c7b41c5ec06adaa63bce606634cfdf3927b5",
+    "archive_name": "gdstyle-aarch64-apple-darwin.tar.gz",
+    "executable": "gdstyle"
+  }
+]

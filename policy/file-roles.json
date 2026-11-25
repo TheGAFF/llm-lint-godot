@@ -1,0 +1,16 @@
+[
+  {"role":"resource","folder":"resources","extensions":["tres","res"],"aliases":[]},
+  {"role":"scene","folder":"scenes","extensions":["tscn","scn"],"aliases":[]},
+  {"role":"music","folder":"assets/music","extensions":["ogg","wav","mp3"],"aliases":["assets/audio/music"]},
+  {"role":"sound_effect","folder":"assets/sound_effects","extensions":["ogg","wav","mp3"],"aliases":["assets/audio/sfx","assets/sfx"]},
+  {"role":"icon","folder":"assets/icons","extensions":["svg","png","jpg","jpeg","webp"],"aliases":[]},
+  {"role":"texture","folder":"assets/textures","extensions":["svg","png","jpg","jpeg","webp"],"aliases":[]},
+  {"role":"font","folder":"assets/fonts","extensions":["ttf","otf"],"aliases":[]},
+  {"role":"fixture","folder":"testing/fixtures","extensions":["json","csv","txt"],"aliases":[]},
+  {"role":"specification","folder":"docs/specifications","extensions":["md"],"aliases":[]},
+  {"role":"guide","folder":"docs/guides","extensions":["md"],"aliases":[]},
+  {"role":"reference","folder":"docs/references","extensions":["md"],"aliases":[]},
+  {"role":"standard","folder":"docs/standards","extensions":["md"],"aliases":[]},
+  {"role":"decision","folder":"docs/decisions","extensions":["md"],"aliases":[]},
+  {"role":"verification","folder":"docs/verification","extensions":["md"],"aliases":[]}
+]

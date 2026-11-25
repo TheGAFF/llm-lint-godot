@@ -1,0 +1,31 @@
+{
+  "rule": "architecture/document-blueprint",
+  "expected": {
+    "path": "src/features/run/docs/decisions/checkpoint_decision.md",
+    "line": 20
+  },
+  "passing": {
+    "operation": "architecture",
+    "args": [],
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/run/docs/decisions/checkpoint_decision.md": "+++\nreviewed = \"2026-01-01\"\n+++\n# Checkpoint\n\n## Summary\n\nCheckpoint behavior and its review evidence.\n\n## Key Files\n\n| Path | Purpose |\n| --- | --- |\n| `project.godot` | Project settings. |\n\n## Decision\n\n- Preserve saves.\n\n## Rationale\n\n- Resume interrupted play.\n\n## Alternatives\n\n- Restarting was rejected.\n\n## Consequences\n\n- Save compatibility is required.\n\n## Related Documents\n\n- [Project](README.md).\n"
+    },
+    "directories": [
+      "src"
+    ]
+  },
+  "failing": {
+    "operation": "architecture",
+    "args": [],
+    "files": {
+      "project.godot": "config_version=5\n",
+      "llm-lint.godot.toml": "version=1\n",
+      "src/features/run/docs/decisions/checkpoint_decision.md": "+++\nreviewed = \"2026-01-01\"\n+++\n# Checkpoint\n\n## Summary\n\nCheckpoint behavior and its review evidence.\n\n## Key Files\n\n| Path | Purpose |\n| --- | --- |\n| `project.godot` | Project settings. |\n\n## Decision\n\n- Preserve saves.\n\n## Explanation\n\n- Resume interrupted play.\n\n## Alternatives\n\n- Restarting was rejected.\n\n## Consequences\n\n- Save compatibility is required.\n\n## Related Documents\n\n- [Project](README.md).\n"
+    },
+    "directories": [
+      "src"
+    ]
+  }
+}

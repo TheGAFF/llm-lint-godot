@@ -1,0 +1,942 @@
+[
+  {
+    "id": "architecture/asset-collision",
+    "description": "Suggested asset destinations must not overwrite existing files.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/asset-kind",
+    "description": "Assets must have an unambiguous supported role; classify ambiguous media explicitly.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/bundle-companion",
+    "description": "Exclusive companions must live beside their resolved scene, resource or script anchor.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": false
+  },
+  {
+    "id": "architecture/bundle-configuration",
+    "description": "Companion declarations and directory exclusions must reference existing, applicable bundle subjects.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": false
+  },
+  {
+    "id": "architecture/bundle-placement",
+    "description": "Bundle-enabled owners put managed Godot files under a subject directory.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": false
+  },
+  {
+    "id": "architecture/bundle-size",
+    "description": "Bundle-enabled directories must stay within the direct authored Godot file cap.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": false
+  },
+  {
+    "id": "architecture/class-name",
+    "description": "ReadRunQuery",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/class-unique",
+    "description": "One globally unique class_name",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/collection-size",
+    "description": "At most 2 code lines",
+    "default": "error",
+    "source": "custom",
+    "options": [
+      "max"
+    ],
+    "configurable": true
+  },
+  {
+    "id": "architecture/comment-suppression",
+    "description": "Next-line suppressions name one configurable architecture rule and a nonempty reason, and must suppress a diagnostic.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": false
+  },
+  {
+    "id": "architecture/companion-files",
+    "description": "Matched source files require all configured companion files with exact casing.",
+    "default": "error",
+    "source": "custom",
+    "options": [
+      "pairs"
+    ],
+    "configurable": true
+  },
+  {
+    "id": "architecture/dependency-direction",
+    "description": "shared -> shared; features -> shared/features; runtime cannot load testing/editor/tooling",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/document-blueprint",
+    "description": "Each document follows its role-specific ordered heading blueprint.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/document-collision",
+    "description": "Suggested document destinations must not overwrite existing files or share a destination.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/document-metadata",
+    "description": "Role documents require valid, nonfuture reviewed dates and strict TOML review metadata.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/document-role",
+    "description": "Markdown documents require a specification, guide, reference, standard, decision or verification role.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/document-size",
+    "description": "Documents stay within role-specific line and word budgets; remove repetition or split focused topics.",
+    "default": "error",
+    "source": "custom",
+    "options": [
+      "max_lines",
+      "max_words"
+    ],
+    "configurable": true
+  },
+  {
+    "id": "architecture/document-sources",
+    "description": "Key Files declares meaningful, safe, case-sensitive source files or globs.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/document-stale",
+    "description": "Living documents must be reviewed when their declared source contents or file sets change.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/document-structure",
+    "description": "Role sections use concise prose, ordered or unordered lists, and defined tables.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/dynamic-load",
+    "description": "Literal targets or a reasoned function-to-resource-root declaration",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/dynamic-load-bound",
+    "description": "Load target within declared runtime roots",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/dynamic-load-stale",
+    "description": "Remove stale declaration",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/empty-directory",
+    "description": "Authored directories must contain a child directory or a file other than .gitkeep or .keep. Use an exact exception with item <directory> for a planned use.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/exception-stale",
+    "description": "Remove unused exact exception",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/feature-layout",
+    "description": "features/<owner>, shared, app or a registered plugin/tool owner",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/file-name",
+    "description": "snake_case paths",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/function-role",
+    "description": "validators",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/local-variable-snake-case",
+    "description": "Function-local variables and loop and match bindings use snake_case without a leading underscore.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/mapper-output-declaration",
+    "description": "Named mapper outputs resolve to local, shared, or known external declarations.",
+    "default": "error",
+    "source": "custom",
+    "options": [
+      "externalTypes"
+    ],
+    "configurable": true
+  },
+  {
+    "id": "architecture/mapper-return-type",
+    "description": "Mapper names identify their named output and plural collection payload.",
+    "default": "error",
+    "source": "custom",
+    "options": [
+      "pluralForms"
+    ],
+    "configurable": true
+  },
+  {
+    "id": "architecture/member-underscore-required",
+    "description": "Methods and member variables used only in their own script file start with an underscore.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/native-suppression",
+    "description": "One exact gdstyle rule with a same-line or adjacent '# reason: <explanation>'; no file-wide suppression",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/private-member-access",
+    "description": "Calls, callable references, reads, and writes of underscore-prefixed script members stay within their declaring file, with an exception for inherited hooks.",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/reference",
+    "description": "Existing project-relative reference with exact path casing",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/resource-id-name",
+    "description": "Standalone scripted resource IDs match the filename without the extension and final _resource suffix, and are globally unique.",
+    "default": "off",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/resource-id-type",
+    "description": "Primary exported resource IDs use StringName; numeric IDs are excluded.",
+    "default": "off",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/role-base",
+    "description": "RefCounted inheritance",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/role-filename",
+    "description": "queries/<subject>_query.gd",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/role-layout-conflict",
+    "description": "Collection file XOR role directory",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/role-placement",
+    "description": "Role folder with matching suffix, or owner-level functional collection",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/stringname-literal",
+    "description": "Use & literals in statically established StringName contexts; dynamic conversions are allowed.",
+    "default": "off",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/syntax",
+    "description": "Syntax",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": false
+  },
+  {
+    "id": "architecture/testing-name",
+    "description": "test_*.gd, *_test_factory.gd or *_test_harness.gd",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "architecture/utility-state",
+    "description": "Static functions with private implementation helpers",
+    "default": "error",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "duplicates/exact",
+    "description": "Exact",
+    "default": "threshold",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "duplicates/renamed",
+    "description": "Renamed",
+    "default": "threshold",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "duplicates/similar",
+    "description": "Similar",
+    "default": "threshold",
+    "source": "custom",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "formatting/check",
+    "description": "Verify native formatting without writing source",
+    "default": "error",
+    "source": "formatting",
+    "options": [],
+    "configurable": true
+  },
+  {
+    "id": "gdstyle/format/blank-lines",
+    "description": "Collapse 3+ blank lines to 2 between top-level members",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/boolean-operators",
+    "description": "Use 'and'/'or'/'not' instead of '&&'/'||'/'!'",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/brace-spacing",
+    "description": "Single-line dictionary literals need a space after '{' and before '}'",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/call-paren-spacing",
+    "description": "No space between a callee and its opening '('",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/colon-spacing",
+    "description": "No space before ':' and one space after (except `:=` and end of line)",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/comma-spacing",
+    "description": "No space before ',' and one space after (except newline / closing bracket)",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/comment-spacing",
+    "description": "Comments must have a space after #",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/double-quotes",
+    "description": "Prefer double quotes for strings",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/enum-one-per-line",
+    "description": "Each enum member on its own line",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/float-literal-zeros",
+    "description": "Float literals need leading/trailing zeros",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/large-number-underscores",
+    "description": "Large numbers (integer part >= large_number_threshold, default 10_000) should use underscores",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "large_number_threshold"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/max-line-length",
+    "description": "Lines must not exceed max length (default: 100)",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_line_length"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/no-tabs-as-spaces",
+    "description": "Use consistent indentation (tabs by default)",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/no-unnecessary-parens",
+    "description": "No unnecessary parentheses in if/while conditions",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/number-literals",
+    "description": "Number literals must follow formatting rules",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/one-statement-per-line",
+    "description": "One statement per line (no semicolons)",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/operator-spacing",
+    "description": "One space around binary operators",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/trailing-comma",
+    "description": "Trailing comma on last item of multi-line collections whose closing bracket starts its own line",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/trailing-newline",
+    "description": "Files must end with a newline",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/format/trailing-whitespace",
+    "description": "No trailing whitespace",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/class-name-pascal-case",
+    "description": "Class names must use PascalCase",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/constant-name-screaming-case",
+    "description": "Constants must use SCREAMING_SNAKE_CASE (or PascalCase for preloads)",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/enum-member-screaming-case",
+    "description": "Enum members must use SCREAMING_SNAKE_CASE",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/enum-name-pascal-case",
+    "description": "Enum names must use PascalCase",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/file-name-snake-case",
+    "description": "File names must use snake_case",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/function-name-snake-case",
+    "description": "Function names must use snake_case",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/node-name-pascal-case",
+    "description": "$NodePath references should use PascalCase",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/private-underscore-prefix",
+    "description": "Private members with _ should not have @export",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/signal-name-snake-case",
+    "description": "Signal names must use snake_case",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/signal-past-tense",
+    "description": "Signal names should use past tense",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/naming/variable-name-snake-case",
+    "description": "Variable names must use snake_case",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/order/class-member-order",
+    "description": "Class members must follow canonical ordering",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/allocation-in-loop",
+    "description": "Flag .new() allocations inside loops",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/await-in-loop",
+    "description": "Flag 'await' inside a for/while loop",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/duplicate-dict-key",
+    "description": "Flag duplicate keys in dictionary literals",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/duplicated-load",
+    "description": "Flag the same path passed to load()/preload() twice",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/empty-function",
+    "description": "Flag functions whose body is only 'pass' (advisory, opt-in)",
+    "default": "off",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-branches",
+    "description": "Functions must not have too many branches",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_branches"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-class-variables",
+    "description": "Classes must not have too many member variables",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_class_variables"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-file-length",
+    "description": "Files must not exceed max length (default: 1000 lines)",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_file_length"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-function-length",
+    "description": "Functions must not exceed max length (default: 50 lines)",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_function_length"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-inner-classes",
+    "description": "Files must not have too many inner classes",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_inner_classes"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-local-variables",
+    "description": "Functions must not have too many local variables",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_local_variables"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-nesting-depth",
+    "description": "Functions must not nest blocks too deeply",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_nesting_depth"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-parameters",
+    "description": "Functions must not have too many parameters (default: 5)",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_parameters"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-public-methods",
+    "description": "Classes must not have too many public methods",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_public_methods"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/max-returns",
+    "description": "Functions must not have too many return statements",
+    "default": "error",
+    "source": "upstream",
+    "options": [
+      "max_returns"
+    ],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/no-debug-print",
+    "description": "Flag leftover print()/print_debug() calls (advisory, opt-in)",
+    "default": "off",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/no-else-return",
+    "description": "Drop the 'else' when the 'if' branch returns",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/no-self-assign",
+    "description": "Flag assignments of a variable to itself",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/process-get-node",
+    "description": "Flag $/get_node() lookups inside _process/_physics_process",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/self-comparison",
+    "description": "Flag comparisons of a value with itself",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/type-hint",
+    "description": "Declarations should have explicit type hints (advisory, opt-in)",
+    "default": "error",
+    "source": "native",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/unnecessary-pass",
+    "description": "'pass' alongside other statements is redundant",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/quality/unreachable-code",
+    "description": "Flag code after return/break/continue",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/syntax/lex-error",
+    "description": "Report lexer errors (unterminated strings, invalid numbers, bad characters)",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": false,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  },
+  {
+    "id": "gdstyle/syntax/reserved-identifier",
+    "description": "Reserved words (namespace, trait, yield, ...) can't be used as names",
+    "default": "error",
+    "source": "upstream",
+    "options": [],
+    "configurable": true,
+    "upstream": "https://github.com/atelico/gdstyle/tree/v0.3.1"
+  }
+]

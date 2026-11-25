@@ -1,0 +1,21 @@
+# Cargo build output and rustfmt backups.
+**/target/
+**/*.rs.bk
+
+# Local coverage and verification output.
+.coverage/
+.verification/
+*.profraw
+*.profdata
+
+# Downloaded tools and Godot import caches.
+.tools/
+.godot/
+
+# Editor temporary files and OS metadata.
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
