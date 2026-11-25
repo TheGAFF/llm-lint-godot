@@ -91,7 +91,7 @@ try {
         } finally {
             Pop-Location
         }
-        $nativeBinary = Join-Path $env:GODOT_LLM_LINT_CACHE_DIR "gdstyle/0.3.1/$Target/$($gdstyle.executable)"
+        $nativeBinary = Join-Path $env:GODOT_LLM_LINT_CACHE_DIR "gdstyle/0.8.0/$Target/$($gdstyle.executable)"
         if ((Get-FileHash -LiteralPath $nativeBinary -Algorithm SHA256).Hash -ine $gdstyle.executable_sha256) {
             throw 'gdstyle executable differs from the pinned release.'
         }

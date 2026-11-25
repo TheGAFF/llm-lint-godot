@@ -1,5 +1,5 @@
 use super::super::{
-    models::{Project, Settings},
+    models::{NativeTool, Project, Settings},
     validators::validate_duplicate_exceptions,
 };
 use crate::shared::{models::Outcome, paths::guarded_path};
@@ -236,22 +236,33 @@ fn validate_native(settings: &Settings) -> Outcome<()> {
     {
         return Err("Unknown style setting or zero threshold".into());
     }
-    if let Some(native) = &settings.gdstyle {
-        if native.auto {
-            if native.version != "0.3.1"
-                || !native.executable.is_empty()
-                || !native.sha256.is_empty()
-            {
-                return Err("Automatic gdstyle configuration requires version 0.3.1 and omits executable/sha256".into());
-            }
-            return Ok(());
+    if let Some(tool) = &settings.gdstyle {
+        if tool.version == super::native::LEGACY_VERSION {
+            return Err(format!(
+                "Run godot-llm-lint init to upgrade gdstyle from {} to {}",
+                tool.version,
+                super::native::VERSION
+            )
+            .into());
         }
-        if native.version != "0.3.1" || !super::native::valid_digest(&native.sha256) {
-            return Err("gdstyle requires version 0.3.1 and an executable SHA256".into());
+        validate_native_tool(tool, super::native::VERSION)?;
+    }
+    Ok(())
+}
+
+pub(in crate::features::configuration) fn validate_native_tool(
+    tool: &NativeTool,
+    version: &str,
+) -> Outcome<()> {
+    if tool.version != version {
+        return Err(format!("gdstyle requires version {version}").into());
+    }
+    if tool.auto {
+        if !tool.executable.is_empty() || !tool.sha256.is_empty() {
+            return Err("Automatic gdstyle configuration omits executable/sha256".into());
         }
-        if native.executable.is_empty() {
-            return Err("Missing gdstyle executable".into());
-        }
+    } else if tool.executable.is_empty() || !super::native::valid_digest(&tool.sha256) {
+        return Err("Explicit gdstyle configuration requires an executable and SHA256".into());
     }
     Ok(())
 }

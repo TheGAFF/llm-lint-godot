@@ -26,7 +26,7 @@ fn native_authority_comes_from_the_caller() {
     let bytes = "placeholder executable";
     let checkout_digest = format!("{:x}", Sha256::digest(bytes));
     let policy = format!(
-        "[gdstyle]\nversion='0.3.1'\nexecutable='checkout-tool'\nsha256='{checkout_digest}'\n"
+        "[gdstyle]\nversion='0.8.0'\nexecutable='checkout-tool'\nsha256='{checkout_digest}'\n"
     );
     project(root.path(), &policy);
     write(
@@ -81,7 +81,7 @@ fn native_authority_comes_from_the_caller() {
 fn history_and_corpus_reject_linked_directories() {
     let root = tempfile::tempdir().unwrap();
     let external = tempfile::tempdir().unwrap();
-    project(root.path(), "[gdstyle]\nauto=true\nversion='0.3.1'\n");
+    project(root.path(), "[gdstyle]\nauto=true\nversion='0.8.0'\n");
     write(external.path(), "external.gd", "extends Node");
     link_dir(external.path(), &root.path().join(".tools"));
 

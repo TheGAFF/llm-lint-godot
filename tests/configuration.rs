@@ -59,7 +59,7 @@ fn invalid_configuration_never_silently_weakens_policy() {
         "[style]\nunknown=3",
         "[style]\nmax_parameters=0",
         "[gdstyle]\nexecutable='gdstyle'\nversion='latest'\nsha256='abc'",
-        "[gdstyle]\nexecutable=''\nversion='0.3.1'\nsha256='0000000000000000000000000000000000000000000000000000000000000000'",
+        "[gdstyle]\nexecutable=''\nversion='0.8.0'\nsha256='0000000000000000000000000000000000000000000000000000000000000000'",
         "[[exceptions]]\npath='src'\nrule='wrong'\nitem='one'\nreason='test'",
         "[[dynamic_loads]]\npath='src/load.gd'\nitem='load_all'\nroots=[]\nreason='test'",
         "[[dynamic_loads]]\npath='src/load.gd'\nitem='load_all'\nroots=['other']\nreason='test'",

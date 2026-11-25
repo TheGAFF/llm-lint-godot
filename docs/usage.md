@@ -45,9 +45,16 @@ includes = ["src/features/ui/legacy/**"]
 
 ### Native tool setup and trust
 
-`init` caches the official `gdstyle` at `gdstyle/0.3.1/<target>/` inside the linter's cache. The cache defaults to `%LOCALAPPDATA%/godot-llm-lint` on Windows, `~/Library/Caches/godot-llm-lint` on macOS, and `$XDG_CACHE_HOME/godot-llm-lint` or `~/.cache/godot-llm-lint` on Linux. A trusted caller can set `GODOT_LLM_LINT_CACHE_DIR` to an absolute path outside the checkout.
+To upgrade a project from gdstyle 0.3.1, run the upgraded linter's
+`godot-llm-lint init` from the project root, then commit both configuration
+files. This provisions 0.8.0, migrates either legacy `[gdstyle]` format to
+the automatic pin, and regenerates `gdstyle.toml` with your project rules,
+overrides, and thresholds. Run `godot-llm-lint check --json` to review new
+findings, including extra spacing and other formatter changes.
 
-For offline setup, use `init --gdstyle-archive <file>` with the official archive, or `init --gdstyle-executable <external-file>` with the official executable. Both are checked against embedded SHA-256 digests. For a custom 0.3.1 build, supply `--gdstyle-executable <external-file> --gdstyle-sha256 <digest>` on each `init`, `check`, or `lint` invocation that uses it. Keep the executable and its digest in a trusted location outside the checkout. The caller supplies the authority to run native executables.
+`init` caches the official `gdstyle` at `gdstyle/0.8.0/<target>/` inside the linter's cache. The cache defaults to `%LOCALAPPDATA%/godot-llm-lint` on Windows, `~/Library/Caches/godot-llm-lint` on macOS, and `$XDG_CACHE_HOME/godot-llm-lint` or `~/.cache/godot-llm-lint` on Linux. A trusted caller can set `GODOT_LLM_LINT_CACHE_DIR` to an absolute path outside the checkout.
+
+For offline setup, use `init --gdstyle-archive <file>` with the official archive, or `init --gdstyle-executable <external-file>` with the official executable. Both are checked against embedded SHA-256 digests. For a custom 0.8.0 build, supply `--gdstyle-executable <external-file> --gdstyle-sha256 <digest>` on each `init`, `check`, or `lint` invocation that uses it. Keep the executable and its digest in a trusted location outside the checkout. The caller supplies the authority to run native executables.
 
 For trusted local projects, provision with `init`. For fork CI, pin the linter release and provision the native cache in an isolated runner using trusted release inputs. Run `sync --check` and `check --json` against the checkout with a read-only token and without secrets. Treat diagnostics and opt-in history as project data when sharing logs or artifacts. See the [security policy](../SECURITY.md).
 

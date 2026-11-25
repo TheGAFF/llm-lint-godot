@@ -7,7 +7,8 @@ use std::{
     process::Command,
 };
 
-pub(crate) const VERSION: &str = "0.3.1";
+pub(crate) const VERSION: &str = "0.8.0";
+pub(crate) const LEGACY_VERSION: &str = "0.3.1";
 
 pub fn release_for_host() -> Outcome<Release> {
     let target = match (env::consts::OS, env::consts::ARCH) {

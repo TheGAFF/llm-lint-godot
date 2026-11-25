@@ -19,7 +19,7 @@ fn fixture(settings: &str) -> tempfile::TempDir {
     let root = tempfile::tempdir().unwrap();
     project(
         root.path(),
-        &format!("[gdstyle]\nauto=true\nversion='0.3.1'\n{settings}"),
+        &format!("[gdstyle]\nauto=true\nversion='0.8.0'\n{settings}"),
     );
     root
 }

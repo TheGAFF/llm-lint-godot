@@ -6,12 +6,12 @@ The CLI runs locally and requires no model service or API key. Pin the version i
 
 ## Install
 
-Download the archive and its matching `.sha256` file from the [v0.5.0 GitHub release](https://github.com/TheGAFF/llm-lint-godot/releases/tag/v0.5.0). Choose Windows x64, Linux x64, macOS Intel, or macOS Apple Silicon. Verify the archive before extracting it.
+Download the archive and its matching `.sha256` file from the [v0.6.0 GitHub release](https://github.com/TheGAFF/llm-lint-godot/releases/tag/v0.6.0). Choose Windows x64, Linux x64, macOS Intel, or macOS Apple Silicon. Verify the archive before extracting it.
 
 Run these commands from the download directory in Windows PowerShell.
 
 ```powershell
-$archive = 'godot-llm-lint-v0.5.0-x86_64-pc-windows-msvc.zip'
+$archive = 'godot-llm-lint-v0.6.0-x86_64-pc-windows-msvc.zip'
 $expected = ((Get-Content "$archive.sha256" -Raw).Trim() -split '\s+')[0]
 if ((Get-FileHash $archive -Algorithm SHA256).Hash -ine $expected) {
     throw 'Archive checksum mismatch'
@@ -22,7 +22,7 @@ Expand-Archive $archive
 On Linux, run these commands with the archive you downloaded.
 
 ```sh
-archive=godot-llm-lint-v0.5.0-x86_64-unknown-linux-gnu.tar.gz
+archive=godot-llm-lint-v0.6.0-x86_64-unknown-linux-gnu.tar.gz
 sha256sum -c "$archive.sha256" && tar -xzf "$archive"
 ```
 
@@ -34,7 +34,7 @@ You can also build from the release tag on any of these platforms. Install Rust 
 
 ```sh
 rustup toolchain install 1.99.0
-cargo +1.99.0 install --git https://github.com/TheGAFF/llm-lint-godot.git --tag v0.5.0 --locked
+cargo +1.99.0 install --git https://github.com/TheGAFF/llm-lint-godot.git --tag v0.6.0 --locked
 godot-llm-lint --version
 ```
 
@@ -51,7 +51,7 @@ The default authored root is `src`, with code owned by `src/features/<feature>`,
 
 Try the commands from the [minimal example project](examples/quickstart/) for a working layout.
 
-`init` creates `llm-lint.godot.toml` and generates `gdstyle.toml`. It uses `curl` and `tar` to provision the pinned `gdstyle` 0.3.1 release in a per-user cache. Commit both configuration files. The [usage guide](docs/usage.md#native-tool-setup-and-trust) covers offline provisioning, existing projects, and CI.
+`init` creates `llm-lint.godot.toml` and generates `gdstyle.toml`. It uses `curl` and `tar` to provision the pinned `gdstyle` 0.8.0 release in a per-user cache. Commit both configuration files. The [usage guide](docs/usage.md#native-tool-setup-and-trust) covers upgrades, offline provisioning, and CI.
 
 Edit `llm-lint.godot.toml` for configuration changes and run `godot-llm-lint sync` to refresh `gdstyle.toml`. Checks are read-only by default.
 
@@ -191,10 +191,11 @@ Numeric limits are configurable. Large bodies below are summarized rather than p
 | [format/call-paren-spacing](docs/rules.md#gdstyleformatcall-paren-spacing) | `spawn (enemy)` | `spawn(enemy)` |
 | [format/colon-spacing](docs/rules.md#gdstyleformatcolon-spacing) | `var hp :int = 100` | `var hp: int = 100` |
 | [format/comma-spacing](docs/rules.md#gdstyleformatcomma-spacing) | `Vector2(1 ,2)` | `Vector2(1, 2)` |
-| [format/comment-spacing](docs/rules.md#gdstyleformatcomment-spacing) | `##Boss battle signals.` | `## Boss battle signals.` (caught by `formatting/check` in pinned 0.3.1, not a separate lint diagnostic) |
+| [format/comment-spacing](docs/rules.md#gdstyleformatcomment-spacing) | `#0 means inactive.` | `# 0 means inactive.` |
 | [format/double-quotes](docs/rules.md#gdstyleformatdouble-quotes) | `var title: String = 'Boss'` | `var title: String = "Boss"` |
 | [format/enum-one-per-line](docs/rules.md#gdstyleformatenum-one-per-line) | `enum State { IDLE, RUNNING }` | `enum State {↵⇥IDLE,↵⇥RUNNING,↵}` |
-| [format/number-literals](docs/rules.md#gdstyleformatnumber-literals) | `0XABCDEF` | `0xabcdef` |
+| [format/extra-spacing](docs/rules.md#gdstyleformatextra-spacing) | `print( value )` | `print(value)` |
+| [format/number-literals](docs/rules.md#gdstyleformatnumber-literals) | `0xFF` | `0xff` |
 | [format/float-literal-zeros](docs/rules.md#gdstyleformatfloat-literal-zeros) | `var weight: float = 1.` | `var weight: float = 1.0` |
 | [format/large-number-underscores](docs/rules.md#gdstyleformatlarge-number-underscores) | `var gold: int = 10000000` | `var gold: int = 10_000_000` |
 | [format/one-statement-per-line](docs/rules.md#gdstyleformatone-statement-per-line) | `move(); attack(); save()` | `move()↵attack()↵save()` |
@@ -203,10 +204,10 @@ Numeric limits are configurable. Large bodies below are summarized rather than p
 | [format/blank-lines](docs/rules.md#gdstyleformatblank-lines) | Five blank lines between top-level methods | Two blank lines |
 | [format/max-line-length](docs/rules.md#gdstyleformatmax-line-length) | One 400-character `spawn(...)` line (default limit: 100) | Parenthesized multiline call, each line ≤100 characters |
 | [format/trailing-comma](docs/rules.md#gdstyleformattrailing-comma) | `[↵⇥1↵]` | `[↵⇥1,↵]` |
-| [format/trailing-newline](docs/rules.md#gdstyleformattrailing-newline) | `return hp` then end of file | `return hp↵` |
+| [format/trailing-newline](docs/rules.md#gdstyleformattrailing-newline) | `return hp↵↵` at end of file | `return hp↵` |
 | [format/trailing-whitespace](docs/rules.md#gdstyleformattrailing-whitespace) | `return hp···↵` | `return hp↵` |
 
-The [usage guide](docs/usage.md) covers rule settings, file roles, Markdown, and duplicate review. See the [full rule reference](docs/rules.md) for details and the [v0.5.0 release notes](docs/releases/v0.5.0.md) for upgrade steps.
+The [usage guide](docs/usage.md) covers rule settings, file roles, Markdown, and duplicate review. See the [full rule reference](docs/rules.md) for details and the [v0.6.0 release notes](docs/releases/v0.6.0.md) for upgrade steps.
 
 ## Rust development
 

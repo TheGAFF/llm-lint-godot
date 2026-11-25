@@ -1,0 +1,38 @@
+{
+  "rule": "gdstyle/format/extra-spacing",
+  "passing": {
+    "testName": "gdstyle/format/extra-spacing isolated example",
+    "operation": "gdstyle",
+    "args": [
+      "check",
+      "--format",
+      "json",
+      "--config",
+      "gdstyle.toml",
+      "src/shared/nodes/report_node.gd"
+    ],
+    "files": {
+      "gdstyle.toml": "[rules]\n\"format/extra-spacing\"=\"error\"\n",
+      "src/shared/nodes/report_node.gd": "extends Node\n\n\nfunc report(value: int) -> void:\n\tprint(value)\n"
+    }
+  },
+  "failing": {
+    "testName": "gdstyle/format/extra-spacing isolated example",
+    "operation": "gdstyle",
+    "args": [
+      "check",
+      "--format",
+      "json",
+      "--config",
+      "gdstyle.toml",
+      "src/shared/nodes/report_node.gd"
+    ],
+    "files": {
+      "gdstyle.toml": "[rules]\n\"format/extra-spacing\"=\"error\"\n",
+      "src/shared/nodes/report_node.gd": "extends Node\n\n\nfunc report(value: int) -> void:\n\tprint( value )\n"
+    }
+  },
+  "expected": {
+    "rule": "gdstyle/format/extra-spacing"
+  }
+}
