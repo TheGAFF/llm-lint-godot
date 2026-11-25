@@ -145,7 +145,7 @@ fn native_tool_integrity_lint_format_and_no_mutation() {
     let bytes = std::fs::read(&binary).unwrap();
     let hash = format!("{:x}", Sha256::digest(&bytes));
     let root = tempfile::tempdir().unwrap();
-    let config = format!("[gdstyle]\nexecutable='gdstyle.exe'\nversion='0.3.1'\nsha256='{hash}'\n");
+    let config = format!("[gdstyle]\nexecutable='gdstyle.exe'\nversion='0.8.0'\nsha256='{hash}'\n");
     let project = project(root.path(), &config);
     let path = "src/shared/queries/value_query.gd";
     write(
@@ -233,7 +233,7 @@ fn native_long_unicode_paths_check_every_batch_without_writing() {
     let root = tempfile::tempdir().unwrap();
     let project = project(
         root.path(),
-        &format!("[gdstyle]\nexecutable='gdstyle.exe'\nversion='0.3.1'\nsha256='{hash}'\n"),
+        &format!("[gdstyle]\nexecutable='gdstyle.exe'\nversion='0.8.0'\nsha256='{hash}'\n"),
     );
     let good = "extends RefCounted\n\n\nstatic func get_value() -> int:\n\treturn 1\n";
     let paths: Vec<String> = (0..500)

@@ -1,6 +1,6 @@
 [package]
 name = "godot-llm-lint"
-version = "0.5.0"
+version = "0.6.0"
 edition = "2024"
 rust-version = "1.99"
 description = "Godot-native role, feature, reference and duplicate enforcement"

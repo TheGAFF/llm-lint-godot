@@ -1860,7 +1860,7 @@ Collapse 3+ blank lines to 2 between top-level members
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/boolean-operators
 
@@ -1868,7 +1868,7 @@ Use 'and'/'or'/'not' instead of '&&'/'||'/'!'
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/brace-spacing
 
@@ -1876,7 +1876,7 @@ Single-line dictionary literals need a space after '{' and before '}'
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/call-paren-spacing
 
@@ -1884,7 +1884,7 @@ No space between a callee and its opening '('
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/colon-spacing
 
@@ -1892,7 +1892,7 @@ No space before ':' and one space after (except `:=` and end of line)
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/comma-spacing
 
@@ -1900,7 +1900,7 @@ No space before ',' and one space after (except newline / closing bracket)
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/comment-spacing
 
@@ -1908,7 +1908,7 @@ Comments must have a space after #
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/double-quotes
 
@@ -1916,7 +1916,7 @@ Prefer double quotes for strings
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/enum-one-per-line
 
@@ -1924,7 +1924,39 @@ Each enum member on its own line
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
+
+## gdstyle/format/extra-spacing
+
+Use one space between tokens and omit padding inside parentheses and brackets
+
+Default: **error**. Levels: off, warn, error.
+
+[Complete executable fixture](../examples/rules/gdstyle--format--extra-spacing.json).
+
+### Passing
+
+`src/shared/nodes/report_node.gd`
+
+```gdscript
+extends Node
+
+
+func report(value: int) -> void:
+	print(value)
+```
+
+### Failing
+
+`src/shared/nodes/report_node.gd`
+
+```gdscript
+extends Node
+
+
+func report(value: int) -> void:
+	print( value )
+```
 
 ## gdstyle/format/float-literal-zeros
 
@@ -1932,7 +1964,7 @@ Float literals need leading/trailing zeros
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/large-number-underscores
 
@@ -1942,7 +1974,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `large_number_threshold`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/max-line-length
 
@@ -1952,7 +1984,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_line_length`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/no-tabs-as-spaces
 
@@ -1960,7 +1992,7 @@ Use consistent indentation (tabs by default)
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/no-unnecessary-parens
 
@@ -1968,15 +2000,15 @@ No unnecessary parentheses in if/while conditions
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/number-literals
 
-Number literals must follow formatting rules
+Use lowercase hex and binary literals
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/one-statement-per-line
 
@@ -1984,7 +2016,7 @@ One statement per line (no semicolons)
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/operator-spacing
 
@@ -1992,7 +2024,7 @@ One space around binary operators
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/trailing-comma
 
@@ -2000,15 +2032,15 @@ Trailing comma on last item of multi-line collections whose closing bracket star
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/trailing-newline
 
-Files must end with a newline
+End each file with exactly one newline
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/format/trailing-whitespace
 
@@ -2016,7 +2048,7 @@ No trailing whitespace
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/class-name-pascal-case
 
@@ -2024,7 +2056,7 @@ Class names must use PascalCase
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/constant-name-screaming-case
 
@@ -2032,7 +2064,7 @@ Constants must use SCREAMING_SNAKE_CASE (or PascalCase for preloads)
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/enum-member-screaming-case
 
@@ -2040,7 +2072,7 @@ Enum members must use SCREAMING_SNAKE_CASE
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/enum-name-pascal-case
 
@@ -2048,7 +2080,7 @@ Enum names must use PascalCase
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/file-name-snake-case
 
@@ -2056,7 +2088,7 @@ File names must use snake_case
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/function-name-snake-case
 
@@ -2064,7 +2096,7 @@ Function names must use snake_case
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/node-name-pascal-case
 
@@ -2072,7 +2104,7 @@ $NodePath references should use PascalCase
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/private-underscore-prefix
 
@@ -2080,7 +2112,7 @@ Private members with _ should not have @export
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/signal-name-snake-case
 
@@ -2088,7 +2120,7 @@ Signal names must use snake_case
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/signal-past-tense
 
@@ -2096,7 +2128,7 @@ Signal names should use past tense
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/naming/variable-name-snake-case
 
@@ -2104,7 +2136,7 @@ Variable names must use snake_case
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/order/class-member-order
 
@@ -2112,7 +2144,7 @@ Class members must follow canonical ordering
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/allocation-in-loop
 
@@ -2120,7 +2152,7 @@ Flag .new() allocations inside loops
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/await-in-loop
 
@@ -2128,7 +2160,7 @@ Flag 'await' inside a for/while loop
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/duplicate-dict-key
 
@@ -2136,7 +2168,7 @@ Flag duplicate keys in dictionary literals
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/duplicated-load
 
@@ -2144,7 +2176,7 @@ Flag the same path passed to load()/preload() twice
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/empty-function
 
@@ -2152,7 +2184,7 @@ Flag functions whose body is only 'pass' (advisory, opt-in)
 
 Default: **off**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-branches
 
@@ -2162,7 +2194,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_branches`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-class-variables
 
@@ -2172,7 +2204,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_class_variables`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-file-length
 
@@ -2182,7 +2214,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_file_length`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-function-length
 
@@ -2192,7 +2224,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_function_length`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-inner-classes
 
@@ -2202,7 +2234,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_inner_classes`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-local-variables
 
@@ -2212,7 +2244,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_local_variables`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-nesting-depth
 
@@ -2222,7 +2254,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_nesting_depth`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-parameters
 
@@ -2232,7 +2264,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_parameters`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-public-methods
 
@@ -2242,7 +2274,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_public_methods`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/max-returns
 
@@ -2252,7 +2284,7 @@ Default: **error**. Levels: off, warn, error.
 
 Options: `max_returns`.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/no-debug-print
 
@@ -2260,7 +2292,7 @@ Flag leftover print()/print_debug() calls (advisory, opt-in)
 
 Default: **off**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/no-else-return
 
@@ -2268,7 +2300,7 @@ Drop the 'else' when the 'if' branch returns
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/no-self-assign
 
@@ -2276,7 +2308,7 @@ Flag assignments of a variable to itself
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/process-get-node
 
@@ -2284,7 +2316,7 @@ Flag $/get_node() lookups inside _process/_physics_process
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/self-comparison
 
@@ -2292,7 +2324,7 @@ Flag comparisons of a value with itself
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/type-hint
 
@@ -2328,7 +2360,7 @@ static func get_value():
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/quality/unreachable-code
 
@@ -2336,7 +2368,7 @@ Flag code after return/break/continue
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/syntax/lex-error
 
@@ -2344,7 +2376,7 @@ Report lexer errors (unterminated strings, invalid numbers, bad characters)
 
 Default: **error**. Input integrity: always an error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).
 
 ## gdstyle/syntax/reserved-identifier
 
@@ -2352,4 +2384,4 @@ Reserved words (namespace, trait, yield, ...) can't be used as names
 
 Default: **error**. Levels: off, warn, error.
 
-[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.3.1).
+[Upstream rule reference](https://github.com/atelico/gdstyle/tree/v0.8.0).

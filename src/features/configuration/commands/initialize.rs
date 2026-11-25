@@ -2,7 +2,8 @@ use super::super::{
     commands::sync_project,
     helpers::{
         configuration_validity, discover_project,
-        native::{self, NativeOverride, VERSION},
+        native::{self, LEGACY_VERSION, NativeOverride, VERSION},
+        validate_native_tool,
     },
     models::{Release, Settings},
 };
@@ -98,7 +99,14 @@ pub fn sync_initialization(start: &Path, args: &[String]) -> Outcome<()> {
         roots.push(source);
         document["source_roots"] = value(roots);
     }
-    let settings: Settings = toml_edit::de::from_str(&document.to_string())?;
+    let mut settings: Settings = toml_edit::de::from_str(&document.to_string())?;
+    if let Some(tool) = &settings.gdstyle
+        && tool.version == LEGACY_VERSION
+    {
+        validate_native_tool(tool, LEGACY_VERSION)?;
+        // Legacy paths and digests describe the old release, never an executable to run.
+        settings.gdstyle = None;
+    }
     configuration_validity(&root, &settings)?;
     provision(
         &root,

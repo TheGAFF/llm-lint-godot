@@ -204,7 +204,7 @@ fn targets_levels_and_exact_exceptions_apply_to_documents() {
 #[test]
 fn cli_checks_report_document_errors_and_leave_markdown_untouched() {
     let root = tempfile::tempdir().unwrap();
-    project(root.path(), "[gdstyle]\nauto=true\nversion='0.3.1'\n");
+    project(root.path(), "[gdstyle]\nauto=true\nversion='0.8.0'\n");
     let path = "src/features/run/docs/guides/save.md";
     let original = "# Save\n\nres://missing.tres\n```gdscript\ninvalid syntax\n```\n";
     write(root.path(), path, original);

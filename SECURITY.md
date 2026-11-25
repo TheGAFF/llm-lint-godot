@@ -17,10 +17,10 @@ contain model labels, paths, and line numbers. Review them before sharing.
 
 ## Pinned gdstyle reviews
 
-The CI advisory scan covers the exact gdstyle 0.3.1 source lockfile. The
+The CI advisory scan covers the exact gdstyle 0.8.0 source lockfile. The
 lockfile covers the CLI, tests, and Godot extension. The published CLI
 builds gdstyle with its default features. Its runtime graph includes
-crossbeam-epoch through Rayon's worker queues.
+crossbeam-epoch 0.9.18 through Rayon's worker queues.
 
 - [RUSTSEC-2026-0204](https://rustsec.org/advisories/RUSTSEC-2026-0204)
   applies to the epoch pointer-formatting trait. The reviewed CLI
